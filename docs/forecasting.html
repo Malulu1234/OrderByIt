@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrderByIt</title>
+    <link rel="shortcut icon" href="/images/icons/icon-384x384.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/navStyle.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/js/_forecasting.js" defer></script>
+    <script src="/js/bundle.js" type="module" defer></script>
+    <script type="module" src="/js/fb-auth-init.js" defer></script>
+    <script type="module" src="/js/fb-auth-index.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        <div class="brand">
+
+            <a href="/">
+                <img src="/images/icons/icon-192x192.png" alt="logo">
+            </a>
+        </div>
+        <span></span>
+        <button class="logOut" id="logOut">log Out</button>
+    </nav>
+    <div class="page-container">
+        <div class="page-title">
+            <h1>OrderByIt - forecasting</h1>
+        </div>
+        <div class="form-container">
+            <form data-form novalidate>
+                <fieldset class="form-step"><!--Forcast-->
+                    <legend class="step-title">Forecast inputs</legend>
+                    <div class="input-group">
+                        <label for="sumOfMachines">Sum Of Machines</label>
+                        <input type="number" name="sumOfMachines" id="sumOfMachines" step="1" min=1>
+                    </div>
+                    <div class="input-group">
+                        <label for="demandPeriods">Known demands</label>
+                        <input type="number" name="demandPeriods" id="demandPeriods" step="1" min=6
+                            onchange="updateDemands()">
+                    </div>
+                    <div class="input-group">
+                        <label for="cycleTime">Cycle Time</label>
+                        <div class="input-select">
+                            <input type="number" name="cycleTime" id="cycleTime" min=0>
+                            <select>
+                                <option value="Seconds">Seconds</option>
+                                <option value="Minutes" selected>Minutes</option>
+                                <option value="Hours">Hours</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="inventoryMaxLevel">Inventory Max Level</label>
+                        <input type="number" name="inventoryMaxLevel" id="inventoryMaxLevel" min=0>
+                    </div>
+                    <div class="input-group">
+                        <label for="workHours">Work Hours</label>
+                        <input type="range" name="workHours" id="workHours" min=6 max=12>
+                    </div>
+                    <div class="input-group">
+                        <label for="budget">Budget</label>
+                        <input type="number" name="budget" id="budget" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="inviteCost">Order Cost</label>
+                        <input type="number" name="inviteCost" id="inviteCost" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="inventoryIntrest">Inventory Intrest</label>
+                        <div class="input-select"><input type="number" name="inventoryIntrest" id="inventoryIntrest"
+                                min=0 max="100">
+                            <select disabled class="select-no-arrow">
+                                <option selected>%</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="expectedLeadTime">Expected Lead Time</label>
+                        <input type="number" name="expectedLeadTime" id="expectedLeadTime" min=0>
+                    </div>
+                    <div class="input-group">
+                        <label for="safetyStockPercent">Safety Stock Percent</label>
+                        <div class="input-select">
+                            <input type="number" name="safetyStockPercent" id="safetyStockPercent" min="0">
+                            <select disabled class="select-no-arrow">
+                                <option selected>%</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="form-step"><!--Materials-->
+                    <legend class="step-title">Material input</legend>
+                    <table id="rawMaterials">
+                        <thead>
+                            <tr>
+                                <th>&emsp;&ensp;</th>
+                                <th>Name </th>
+                                <th>ID </th>
+                                <th>Price </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#1</td>
+                                <td><input type="text" name="name" onchange="updateMat()"></td>
+                                <td><input type="text" name="matID" onchange="updateMat()"></td>
+                                <td><input type="number" name="price"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="table-buttons">
+                        <button data-deleteRow data-material type="button" class="bouncing-text">
+                        </button>
+                        <button data-addRow type="button" class="bouncing-text">
+                        </button>
+                    </div>
+                </fieldset>
+                <fieldset class="form-step"><!--Products-->
+                    <legend class="step-title">Products input</legend>
+                    <table id="Products">
+                        <thead>
+                            <tr>
+                                <th>&emsp;&ensp;</th>
+                                <th>Name</th>
+                                <th>ID</th>
+                                <th>More</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#1</td>
+                                <td><input type="text" name="Name"></td>
+                                <td><input type="text" name="ID"></td>
+                                <td><input type="button" value=&plus; keep-value onclick='editProduct(this)'></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="table-buttons">
+                        <button data-deleteRow data-product type="button" class="bouncing-text">
+                        </button>
+                        <button data-addRow data-product type="button" class="bouncing-text">
+                        </button>
+                    </div>
+                </fieldset>
+                <div data-dependents><!--Products-Dependencies-->
+                    <datalist id="Mats">
+                    </datalist>
+                    <div data-dependent=1 class="product_dependencies">
+                        <span id="close">&times;</span>
+                        <fieldset class="form-step">
+                            <legend class="step-title"> עריכת מוצר</legend>
+                            <div class="input-group">
+                                <label for="price">Price</label>
+                                <input type="number" name="price">
+                            </div>
+                            <div class="input-group">
+                                <label for="volume">Storage Volume</label>
+                                <input type="text" name="volume">
+                            </div>
+                            <div class="input-group">
+                                <label class="center"><u>Dependencies</u></label>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Material</th>
+                                            <th>&emsp;&emsp;</th>
+                                            <th>Quantity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="last-short">
+                                        <tr>
+                                            <td>
+                                                <select list="Mats">
+                                            </td>
+                                            <td>&colon;</td>
+                                            <td><input type="number" min=0></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="table-buttons">
+                                    <button data-deleteRow data-depentent type="button" class="bouncing-text"></button>
+                                    <button data-addRow data-depentent type="button" class="bouncing-text"></button>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label class="center"><u>Demands by Periods</u></label>
+                                <div data-demands class="demands-grid">
+                                    <div class="input-group">
+                                        <label class="center">#1</label>
+                                        <input type="number" min=0>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="form-buttons"><!--Submit-->
+                    <button type="submit">Calculate</button>
+                    <button type="button" id="clear" tabindex="-1">Clear</button>
+                </div>
+            </form>
+        </div>
+        <div class="answer" id="results"><!--Results-->
+            <template>
+                <hr>
+                <h2 message></h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>ID</th>
+                            <th>Order Quantity</th>
+                            <th>Dependencies</th>
+                            <th>Forcest Model</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template>
+                            <tr>
+                                <td key="Name"></td>
+                                <td key="ID"></td>
+                                <td key="params.lamda"></td>
+                                <td key="dependents"></td>
+                                <td key="params.model"></td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+                <div class="overall-dep">
+                    <h3><u>Overall Material required:</u></h3>
+                    <ul dependents></ul>
+                </div>
+            </template>
+        </div>
+        <footer>
+            <span class="made_by">©2022 OrderByIt, All Rights Reserved.</span>
+            <span class="ver"></span>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrderByIt</title>
+    <link rel="shortcut icon" href="/images/icons/icon-384x384.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/navStyle.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script type="module" src="/js/fb-auth-init.js" defer></script>
+    <script type="module" src="/js/fb-auth-index.js" defer></script>
+    <script src="/js/_mrp.js" type="module" defer></script>
+</head>
+
+<body>
+    <nav>
+        <div class="brand">
+            <a href="/">
+                <img src="/images/icons/icon-192x192.png" alt="logo">
+            </a>
+        </div>
+        <span></span>
+        <button class="logOut" id="logOut">log Out</button>
+    </nav>
+    <div class="page-container">
+        <div class="page-title">
+            <h1>OrderByIt - mrp</h1>
+        </div>
+        <div class="form-container">
+            <form data-form novalidate>
+                <fieldset class="form-step"><!--Inputs-->
+                    <legend class="step-title"></legend>
+                    <div class="input-group"> <!--Future Demands-->
+                        <label for="FutureDemands">Future Demands</label>
+                        <input type="number" name="FutureDemands" id="FutureDemands" step="1" min=1>
+                    </div>
+                    <div class="input-group" style="display:none"><!--Demands By Periods-->
+                        <label><u>Demands</u></label>
+                        <div data-demands class="demands-grid">
+                            <div class="input-group">
+                                <label class="center">#1</label>
+                                <input type="number" min=0>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="input-group">
+                        <label for="inventoryMaxLevel">Inventory Level Constraint (optional)</label>
+                        <div class="input-optional">
+                            <span class="checkmark">
+                                <input type="checkbox" name="inventoryConstraint" id="inventoryConstraint">
+                            </span>
+                            <input type="number" name="inventoryMaxLevel" id="inventoryMaxLevel" disabled min=1>
+                        </div>
+                    </div> -->
+                    <div class="input-group"><!--Delivery Time-->
+                        <label for="deliveryTime">Delivery Time</label>
+                        <input type="number" name="deliveryTime" id="deliveryTime" init-value=0 min=0>
+                    </div>
+                    <div class="input-group"><!--Existing Inventory-->
+                        <label for="existingInventory">Existing Inventory</label>
+                        <input type="number" name="existingInventory" id="existingInventory" init-value=0 min=0>
+                    </div>
+                    <div class="input-group"><!--Inventory Holding Cost-->
+                        <label for="inventoryHoldingCost">Inventory Holding Cost</label>
+                        <input type="number" name="inventoryHoldingCost" id="inventoryHoldingCost" min=0>
+                    </div>
+                    <div class="input-group"><!--Order Cost-->
+                        <label for="orderCost">Order Cost</label>
+                        <input type="number" name="orderCost" id="orderCost" min=0>
+                    </div>
+                    <div class="input-group"><!--Fixed Period For Order-->
+                        <label for="fixedPeriod">Fixed Period For Order (optional)</label>
+                        <div class="input-optional">
+                            <span class="checkmark">
+                                <input type="checkbox" name="isFixedPeriod" id="isFixedPeriod">
+                            </span>
+                            <input type="number" name="fixedPeriod" id="fixedPeriod" min=0 disabled>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-buttons"><!--Submit-->
+                    <button type="submit">Calculate</button>
+                    <button type="button" id="clear" tabindex="-1">Clear</button>
+                </div>
+            </form>
+        </div>
+        <div class="answer" id="results"><!--Results-->
+            <template>
+                <hr>
+                <h2>Results By - <span data-model></span></h2>
+                <div class="resultContainer">
+                    <div invCost>
+                        Inventory Cost: <span data-val></span>
+                    </div>
+                    <div orderCost>
+                        Order Cost: <span data-val></span>
+                    </div>
+                    <div totalCost class="bold">
+                        Total Cost: <span data-val></span>
+                    </div>
+                    <div orderQuantity>
+                        Order Quantity: <span data-val></span>
+                    </div>
+                    <div totalProductAmount>
+                        Total Product Amount: <span data-val></span>
+                    </div>
+                    <div numOfOrders>
+                        Number Of Orders: <span data-val></span>
+                    </div>
+                </div>
+                <br>
+                <div class="input-group form-size"><!--Demands By Periods-->
+                    <label class="center"><u>Order Amount (start of month)</u></label>
+                    <br>
+                    <div class="demands-grid" orderPerPeriod>
+                        <!-- <div class="input-group">
+                            <label class="center">#1</label>
+                            <input type="number" min=0>
+                        </div>
+                        <div class="input-group">
+                            <label class="center">#2</label>
+                            <input type="number" min=0>
+                        </div>
+                        <div class="input-group">
+                            <label class="center">#3</label>
+                            <input type="number" min=0>
+                        </div> -->
+                    </div>
+                </div>
+                <br>
+                <div class="input-group form-size"><!--Demands By Periods-->
+                    <label class="center"><u>Inventory Value (end of month)</u></label>
+                    <br>
+                    <div class="demands-grid" invPerPeriod>
+                        <!-- <div class="input-group">
+                            <label class="center">#1</label>
+                            <input type="number" min=0>
+                        </div>
+                        <div class="input-group">
+                            <label class="center">#2</label>
+                            <input type="number" min=0>
+                        </div>
+                        <div class="input-group">
+                            <label class="center">#3</label>
+                            <input type="number" min=0>
+                        </div> -->
+                    </div>
+                </div>
+            </template>
+        </div>
+        <footer>
+            <span class="made_by">©2022 OrderByIt, All Rights Reserved.</span>
+            <span class="ver"></span>
+        </footer>
+    </div>
+</body>
+
+</html>

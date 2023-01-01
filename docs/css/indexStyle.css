@@ -1,0 +1,128 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui;
+    min-height: 100vh;
+    font-size: 1.1rem;
+    
+    background-image: url('/images/backgrounds/bg2.jpg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* main
+--------------------------------------------------------------*/
+
+main h1{
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+/* card
+--------------------------------------------------------------*/
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    align-items: stretch;
+    justify-content: center;
+    font-family: "Raleway", sans-serif;
+}
+
+@media screen and (max-width:600px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.card {
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+    border: 2px solid #bacdd8;
+    padding: .5em;
+    border-radius: .75em;
+    max-width: 18.75em;
+}
+
+.card img {
+    border-radius: .75em;
+    height: 13.4em;
+    width:100%;
+    object-fit: cover;
+}
+
+.card__details {
+    /* Add space around the details */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 1em .5em .5em .5em;
+}
+.container:has(.tag:not(:empty)) .card__details .tags{
+    min-height: 0.75em;
+    margin-bottom: .5em;
+}
+
+.card__details .tag:not(:empty) {
+    padding: .25em .5em;
+    border: 1px solid #e5eaed;
+    border-radius: 3.125em;
+    font-size: 0.75em;
+    font-weight: 600;
+    color: #788697;
+}
+
+.card__details .title {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-top: .5em;
+}
+
+.card__details p {
+    font-size: 1em;
+    color: #7f8c9b;
+    line-height: 1.5em;
+    flex-grow: 1;
+}
+
+.card__details a{
+    text-decoration:none;
+}
+
+.card__details button {
+    border: none;
+    padding: .75em 1.5em;
+    border-radius: 3.125em;
+    font-weight: 600;
+    color: #0077ff;
+    background-color: #e0efff;
+
+    margin: 0 auto;
+    display: block;
+
+    cursor: pointer;
+}
+
+.card__details button:focus,
+.card__details button:hover {
+    background-color: #0077ff;
+    color: #e0efff;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="shortcut icon" href="/images/icons/icon-384x384.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/registerStyle.css">
+
+    <script src="/js/fb-auth-init.js" type="module"></script>
+    <script src="/js/fb-auth-register.js" type="module"></script>
+    <!-- <script src="/js/login.js" type="module"></script> -->
+</head>
+
+<body>
+    <div class="container">
+    <form class="userCreds">
+        <h2>Create an Account</h2>
+        <label for="userEmail">Email:</label>
+        <input type="email" name="userEmail" required>
+        <p></p>
+        <label for="userPass">Password:</label>
+        <input type="password" name="userPass" autocomplete required>
+        <p></p>
+        <span class="error"></span>
+        <div class="newUser">
+            already have an account? click <a href="/login.html">here</a> to login
+        </div>
+    </form>
+    <button id="registerBtn">register</button>
+    </div>
+</body>
+
+</html>
