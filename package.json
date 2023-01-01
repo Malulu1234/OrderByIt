@@ -17,7 +17,8 @@
     "babel-preset-env": "^1.7.0",
     "browserify": "^17.0.0",
     "vite": "^4.0.0",
-    "vite-plugin-pwa": "^0.14.0"
+    "vite-plugin-pwa": "^0.14.0",
+    "vite-plugin-ssr": "^0.4.69"
   },
   "dependencies": {
     "exponential-smoothing-stream": "^3.0.0",

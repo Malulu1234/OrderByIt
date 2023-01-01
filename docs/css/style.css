@@ -21,7 +21,7 @@
 body {
     margin: 0;
     /* background: linear-gradient(darkgray, white, darkgray); */
-    background-image: url('/images/backgrounds/bg2.jpg') ;
+    background-image: url('/OrderByIt/images/backgrounds/bg2.jpg') ;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -240,7 +240,7 @@ td {
     position: fixed;
     width: var(--form-width);
     /* background: radial-gradient(white, orange); */
-    background-image: url('/images/backgrounds/starsRed.jpg');
+    background-image: url('/OrderByIt/images/backgrounds/starsRed.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     /* background-position-x: -5rem; */
