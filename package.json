@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "preview-host": "vite preview --host",
-    "bundle": "mkdir temp & babel js/_bundle.js >temp/index-es5.js & browserify temp/index-es5.js>js/bundle.js"
+    "bundle": "mkdir temp & babel js/bundleForcast.js >temp/index-es5.js & browserify temp/index-es5.js>js/bundle.js"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",
