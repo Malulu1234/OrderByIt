@@ -1,0 +1,26 @@
+{
+  "name": "orderbyit2",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "preview-host": "vite preview --host",
+    "bundle": "mkdir temp & babel js/_bundle.js >temp/index-es5.js & browserify temp/index-es5.js>js/bundle.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.18.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "browserify": "^17.0.0",
+    "vite": "^4.0.0",
+    "vite-plugin-pwa": "^0.14.0"
+  },
+  "dependencies": {
+    "exponential-smoothing-stream": "^3.0.0",
+    "regression": "^2.0.1"
+  }
+}

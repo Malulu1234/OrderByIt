@@ -1,0 +1,44 @@
+
+:root{
+    --nav-height: 5rem;
+}
+
+body{
+    padding-top: var(--nav-height); /* for fixed nav */
+}
+/* nav
+--------------------------------------------------------------*/
+
+nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: var(--nav-height);
+    /* background-color: rgb(187, 198, 207); */
+    background: linear-gradient(to bottom, rgb(187, 198, 207) 75%, transparent);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-inline: .5rem;
+    z-index: 9;
+}
+nav .brand{
+    /* mix-blend-mode: color-burn; */
+}
+
+nav .brand :where(img, svg){
+    max-height: var(--nav-height);
+}
+
+nav>span:not(span[class]) {
+    flex-grow: 1;
+}
+
+nav .logOut{
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color:rgb(75, 13, 13);
+    font-weight: bold;
+    padding: .5rem 1rem;
+    cursor: pointer;
+}

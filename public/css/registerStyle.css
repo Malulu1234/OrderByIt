@@ -1,0 +1,83 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: cursive;
+    font-size: 1.5rem;
+    background-color: honeydew;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.userCreds {
+    width: clamp(14rem, 80%, 36rem);
+    padding: 0 2rem 1rem;
+    line-height: 2.5rem;
+    box-shadow: 0 0 5px 2px #777;
+    border-radius: .25rem;
+}
+
+.userCreds h2 {
+    text-align: center;
+    position: relative;
+    margin-bottom: 4rem;
+}
+
+.userCreds h2::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 -.35rem 0;
+    height: .35rem;
+    background: linear-gradient(to right,transparent, gold 20%, hsl(120, 100%, 40%), gold 80%,transparent);
+}
+
+.userCreds>input {
+    line-height: 1.5rem;
+    font-size: 1.5rem;
+    width: 100%;
+    border-radius: .125rem;
+    border: #777 solid 1px;
+    padding: 0.25em .5em;
+    font-family: initial
+}
+
+.error {
+    color: red;
+    font-size: 1rem;
+}
+
+.newUser {
+    font-size: 1rem;
+}
+
+#registerBtn {
+    /* font-size: 1.125rem;
+    padding: 0.5rem 3rem; */
+    font-size: 1.75rem;
+    padding: 0.75rem 5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: hsl(130, 50%, 50%);
+    cursor: pointer;
+    color: antiquewhite;
+}

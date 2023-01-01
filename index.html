@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="shortcut icon" href="/images/icons/icon-384x384.png" type="image/x-icon">
+  <link rel="stylesheet" href="/css/indexStyle.css">
+  <link rel="stylesheet" href="/css/navStyle.css">
+  <link rel="manifest" href="/manifest.json">
+  <script type="module" src="/js/fb-auth-init.js" defer></script>
+  <script type="module" src="/js/fb-auth-index.js" defer></script>
+</head>
+
+<body>
+  <nav>
+    <div class="brand">
+      <a href="/">
+        <img src="/images/icons/icon-192x192.png" alt="logo">
+      </a>
+    </div>
+    <span></span>
+    <button class="logOut" id="logOut">log Out</button>
+  </nav>
+  <main>
+    <h1>Our Services</h1>
+    <div class="container">
+
+      <div class="card">
+        <img
+          src="/images/mrp.jpg"
+          alt="Material Requirement Planning">
+
+        <div class="card__details">
+          <div class="tags">
+            <span class="tag"></span>
+          </div>
+
+          <div class="title">MRP</div>
+
+          <p>
+            Calculate Costs for manufacture and store products for known demands,
+            pick the best option for prodaction from 4 different models.
+          </p>
+
+          <a href="/mrp.html"><button>Check it now</button></a>
+        </div>
+
+      </div>
+      <div class="card">
+        <img
+          src="/images/forecasting.jpg"
+          alt="Demands Forecasting">
+
+        <div class="card__details">
+          <div class="tags">
+
+            <span class="tag"></span>
+          </div>
+          <div class="title">Forecasting</div>
+
+          <p>
+            Calculate the demand for the next period and if it is worth to manufacture the product.
+            Uses 3 different models and pick the best fit.
+          </p>
+
+          <a href="/forecasting.html"><button>Check it now</button></a>
+        </div>
+
+
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
