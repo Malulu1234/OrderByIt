@@ -267,6 +267,6 @@ async function saveDB(data) {
     const docRef = doc(db, "users", auth.currentUser.uid)
     const docSnap = (await getDoc(docRef)).data()
     await updateDoc(docRef, {
-        mrp: [...docSnap.mrp, data]
+        mrps: [...docSnap.mrps, data]
     })
 }
