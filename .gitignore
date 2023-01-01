@@ -12,6 +12,7 @@ dist
 dist-ssr
 temp
 *.local
+fb-env.js
 
 # Editor directories and files
 .vscode/*
